@@ -16,7 +16,7 @@ permissions:
 
 env:
   DOTNET_VERSION: '8.0.x'
-  WORKING_DIRECTORY: './SecureWebApp'
+  WORKING_DIRECTORY: '.'
 
 jobs:
   security-analysis:
