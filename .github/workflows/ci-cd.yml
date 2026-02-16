@@ -1,10 +1,10 @@
 name: Secure CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  #push:
+    #branches: [ main ]
+  #pull_request:
+    #branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -157,7 +157,7 @@ jobs:
         run: |
           echo "Staging URL: ${{ needs.infrastructure.outputs.staging-url }}"
           echo "App Name: ${{ needs.infrastructure.outputs.app-name }}"
-          
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:

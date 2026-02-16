@@ -25,13 +25,14 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
+        working-directory: ./infra
         run: |
-          cd infra
           terraform init
 
       - name: Terraform Destroy
+        working-directory: ./infra
         run: |
-          cd infra
+        
           terraform destroy -auto-approve \
             -var="resource_group_name=${{ secrets.RESOURCE_GROUP_NAME }}" \
             -var="app_name=${{ secrets.APP_NAME }}" \
