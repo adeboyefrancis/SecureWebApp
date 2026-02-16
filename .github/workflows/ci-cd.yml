@@ -115,18 +115,18 @@ jobs:
           terraform_wrapper: false
 
       - name: Terraform Init
+        working-directory: ./infra
         run: |
-          cd infra
           terraform init
 
       - name: Terraform Validate
+        working-directory: ./infra
         run: |
-          cd infra
           terraform validate
 
       - name: Terraform Plan
+        working-directory: ./infra
         run: |
-          cd infra
           terraform plan \
             -var="resource_group_name=${{ secrets.RESOURCE_GROUP_NAME }}" \
             -var="app_name=${{ secrets.APP_NAME }}" \
@@ -135,14 +135,14 @@ jobs:
             -out=tfplan
 
       - name: Terraform Apply
+        working-directory: ./infra
         run: |
-          cd infra
           terraform apply -auto-approve tfplan
 
       - name: Get Terraform Outputs
         id: terraform-output
+        working-directory: ./infra
         run: |
-          cd infra
           echo "staging-url=$(terraform output -raw staging_url)" >> $GITHUB_OUTPUT
           echo "app-name=$(terraform output -raw app_service_name)" >> $GITHUB_OUTPUT
 
@@ -152,6 +152,12 @@ jobs:
     needs: [infrastructure]
     environment: staging
     steps:
+
+      - name: Debug outputs
+        run: |
+          echo "Staging URL: ${{ needs.infrastructure.outputs.staging-url }}"
+          echo "App Name: ${{ needs.infrastructure.outputs.app-name }}"
+          
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
