@@ -486,3 +486,28 @@ $RECYCLE.BIN/
 # Terraform 
 *.terraform.tfvars.example
 *.terraform.tfvars
+*.tfstate
+.tfstate
+.tfvars
+!.tfvars
+.example
+.terraform/
+.terraform.lock.hcl
+
+
+
+#.NET
+bin/ 
+obj/
+publish/
+
+#IDE
+.vs/ 
+.vscode/
+
+#OS
+# Ignore
+
+#OS-generated files
+.DS_Store 
+Thumbs.db 

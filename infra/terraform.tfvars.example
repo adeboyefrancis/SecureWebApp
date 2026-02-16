@@ -1,0 +1,10 @@
+resource_group_name = "rg-secureapp1234"
+location           = "Central US"
+app_name          = "secureapp1234"
+key_vault_name    = "kv-secureapp1234"
+
+tags = {
+  Environment = "Production"
+  Project     = "SecureWebApp"
+  Owner       = "DevOps Team"
+}
